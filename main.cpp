@@ -3,78 +3,76 @@
 using namespace std;
 
 class queueType{
+    
    public:
        int *_queue, _rear, _front;
       
        //constructor
 
-       queueType(int size)
-       {
+       queueType(int size){
+		   
            _queue = new int(size);
-           _front=0;
-           _rear=0;
+           _front = 0;
+           _rear = 0;
        }
+	   
       //insert function
-       void insert(int val)
-       {
-           _queue[_rear]=val;
+	  
+       void insert(int val){
+           _queue[_rear] = val;
            _rear++;
        }
 
       //move fonction
-       void moveNthFront(int n)
-       {
-           int nthElem=_queue[n-1];
-           //shift the values
-           cout<<"Moving the element at "<<n<<" to the front"<<endl;
-           for(int i=n-1;i>0;i--)
+	  
+       void moveNthFront(int n){
+           
+           int nthElem = _queue[n-1];
+           
+           cout<<"Moving the element at index "<< n - 1 <<" to the front" << endl;
+           for(unsigned int idx = n-1 ;idx>0 ;idx--)
            {
-               _queue[i]=_queue[i-1];
+               _queue[idx] = _queue[idx-1];
            }
-           _queue[0]=nthElem;
+           _queue[0] = nthElem;
        }
       
 
-       void display()
-       {
+       void display(){
            cout<<"\tQueue: [";
-           for(int i=_front;i<_rear;i++)
+           for(int idx = _front; idx<_rear;idx++)
            {
-               cout<<_queue[i]<<" ";
+               cout <<_queue[idx] <<" ";
            }
-           cout<<" ]\n" <<endl;
+           cout <<" ]\n" << endl;
        }
 };
 
-void test();
+
+void test(queueType& queue){
+   
+   queue.insert(45);
+   queue.insert(78);
+   queue.insert(41);
+   queue.insert(90);
+   queue.insert(56);
+   queue.insert(100);
+   
+
+   cout << "Queue before moving any elemetns: " << endl;
+   queue.display();
+
+ //lets move 100 to the beginning of the queue
+   queue.moveNthFront(6);
+   queue.display();
+}
+ 
+
 
 int main()
 {
+  queueType queue(6);
+  test(queue);
    
-  test();
   
-  system("pause");
-  return 0;
-}
-
-
-void test(){
-	//lets create a queue of 7 elements
-  queueType myQueue(7);
-
-   myQueue.insert(23);
-   myQueue.insert(78);
-   myQueue.insert(11);
-   myQueue.insert(45);
-   myQueue.insert(90);
-   myQueue.insert(100);
-   myQueue.insert(56);
-
-   cout << "Queue before moving any elemetns: " << endl;
-   myQueue.display();
-
-   //lets move 7th element (100) to the front
-   myQueue.moveNthFront(6);
-  
-   myQueue.display();
 }
