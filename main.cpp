@@ -7,8 +7,6 @@ class queueType{
    public:
        int *_queue, _rear, _front;
       
-       //constructor
-
        queueType(int size){
 		   
            _queue = new int(size);
@@ -16,21 +14,19 @@ class queueType{
            _rear = 0;
        }
 	   
-      //insert function
 	  
        void insert(int val){
            _queue[_rear] = val;
            _rear++;
        }
 
-      //move fonction
 	  
        void moveNthFront(int n){
            
            int nthElem = _queue[n-1];
            
-           cout<<"Moving the element at index "<< n - 1 <<" to the front" << endl;
-           for(unsigned int idx = n-1 ;idx>0 ;idx--)
+           cout<<"Moved the element at index "<< n - 1 <<" to the front" << endl;
+           for(unsigned int idx = n-1 ; idx > 0 ; idx --)
            {
                _queue[idx] = _queue[idx-1];
            }
@@ -39,14 +35,27 @@ class queueType{
       
 
        void display(){
-           cout<<"\tQueue: [";
-           for(int idx = _front; idx<_rear;idx++)
+           cout<<"\tQueue: [ ";
+           for(int idx {_front}; idx < _rear ; idx++)
            {
                cout <<_queue[idx] <<" ";
            }
            cout <<" ]\n" << endl;
        }
 };
+
+
+void test(queueType& queue);
+
+
+int main()
+{
+  queueType queue(6);
+  test(queue);
+   
+  system("pause");
+  return 0;
+}
 
 
 void test(queueType& queue){
@@ -58,7 +67,6 @@ void test(queueType& queue){
    queue.insert(56);
    queue.insert(100);
    
-
    cout << "Queue before moving any elemetns: " << endl;
    queue.display();
 
@@ -67,12 +75,3 @@ void test(queueType& queue){
    queue.display();
 }
  
-
-
-int main()
-{
-  queueType queue(6);
-  test(queue);
-   
-  
-}
